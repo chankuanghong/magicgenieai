@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot Embed</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden; /* Prevents body scroll */
+    }
+
+    #iframe-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="iframe-container">
+    <iframe id="chatbot-iframe" src="https://www.chatbase.co/chatbot-iframe/OK4M3n-5VvrMdmwOIKSGR"></iframe>
+  </div>
+
+<script>
+//Optional Javascript to handle potential postMessage interactions.
+window.addEventListener('message', function(event) {
+  if (event.origin === 'https://www.chatbase.co') { //Verify the origin for security
+    // Handle messages from the iframe (if needed)
+    console.log('Message from iframe:', event.data);
+    //Example code to adjust iframe height based on a message from the iframe.
+    if(event.data.type === 'setHeight'){
+      document.getElementById('chatbot-iframe').style.height = event.data.height + 'px';
+    }
+  }
+});
+
+//Optional Javascript to check for mobile devices.
+if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+  var meta = document.createElement('meta');
+  meta.name = "viewport";
+  meta.content = "width=device-width, initial-scale=1.0";
+  document.getElementsByTagName('head')[0].appendChild(meta);
+}
+
+</script>
+
+</body>
+</html>
